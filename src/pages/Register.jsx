@@ -4,12 +4,12 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-// import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -44,9 +44,10 @@ export const Register = () => {
               photoURL: downloadURL,
             });
 
-            //создаем пустой чат этого юзера в firestore
+            //создаем пустой чат этого юзера в firestore (пустой объект - потому что при регистрации чатов у юзера еще нет)
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            // navigate("/");
+            // если все прошло гуд - идем на главную (<Home />)
+            navigate("/");
           } catch (err) {
             console.log(err);
             setErr(true);
@@ -75,7 +76,7 @@ export const Register = () => {
             <span>Добавить аватар</span>
           </label>
           <button disabled={loading}>Регистрация</button>
-          {loading && "Загрузка данных и изображения, пожалуйста, подождите..."}
+          {loading && "Пожалуйста, подождите..."}
           {err && <span>Что-то пошло не так</span>}
         </form>
         <p>У вас есть аккаунт? Войти</p>
