@@ -6,7 +6,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 // import { useNavigate, Link } from "react-router-dom";
 
-const Register = () => {
+export const Register = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   // const navigate = useNavigate();
@@ -14,28 +14,29 @@ const Register = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+    // собираем данные с формы
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
 
     try {
-      //Create user
+      //создаем пользователя
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      //Create a unique image name
+      //уникальное имя для изображения
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
 
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
-            //Update profile
+            //обновляем профиль юзера (аватар, никнейм)
             await updateProfile(res.user, {
               displayName,
               photoURL: downloadURL,
             });
-            //create user on firestore
+            //создаем юзера в firestore
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
               displayName,
@@ -43,7 +44,7 @@ const Register = () => {
               photoURL: downloadURL,
             });
 
-            //create empty user chats on firestore
+            //создаем пустой чат этого юзера в firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
             // navigate("/");
           } catch (err) {
@@ -62,25 +63,23 @@ const Register = () => {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">Lama Chat</span>
-        <span className="title">Register</span>
+        <span className="logo">Лайв Чат</span>
+        <span className="title">Регистрация</span>
         <form onSubmit={handleSubmit}>
           <input required type="text" placeholder="display name" />
           <input required type="email" placeholder="email" />
           <input required type="password" placeholder="password" />
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
-            <img src={Add} alt="" />
-            <span>Add an avatar</span>
+            <img src={Add} alt="add an avatar" />
+            <span>Добавить аватар</span>
           </label>
-          <button disabled={loading}>Sign up</button>
-          {loading && "Uploading and compressing the image please wait..."}
-          {err && <span>Something went wrong</span>}
+          <button disabled={loading}>Регистрация</button>
+          {loading && "Загрузка данных и изображения, пожалуйста, подождите..."}
+          {err && <span>Что-то пошло не так</span>}
         </form>
-        <p>You do have an account? Login</p>
+        <p>У вас есть аккаунт? Войти</p>
       </div>
     </div>
   );
 };
-
-export default Register;
