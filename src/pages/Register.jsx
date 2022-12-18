@@ -79,7 +79,9 @@ export const Register = () => {
           {loading && "Пожалуйста, подождите..."}
           {err && <span>Что-то пошло не так</span>}
         </form>
-        <p>У вас есть аккаунт? Войти</p>
+        <p>
+          У вас есть аккаунт? <Link to="/login">Войти</Link>
+        </p>
       </div>
     </div>
   );
