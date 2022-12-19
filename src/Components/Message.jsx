@@ -7,9 +7,12 @@ export const Message = ({ message }) => {
   const { data } = useContext(ChatContext);
   const ref = useRef();
 
+  // скролл плавный (вниз) к новым сообщениям
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
+
+  console.log(message);
 
   return (
     <div
@@ -30,7 +33,6 @@ export const Message = ({ message }) => {
           }
           alt=""
         />
-        <span>Только что</span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
@@ -38,6 +40,7 @@ export const Message = ({ message }) => {
           // если есть картинка - показываем ее в чате
           message.img && <img src={message.img} alt="картинка в чате" />
         }
+        <span>{new Date(message.date).toLocaleString()}</span>
       </div>
     </div>
   );

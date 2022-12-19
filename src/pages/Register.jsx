@@ -68,12 +68,12 @@ export const Register = () => {
         <span className="logo">Лайв Чат</span>
         <span className="title">Регистрация</span>
         <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
+          <input required type="text" placeholder="Ваше имя в чате" />
+          <input required type="email" placeholder="Электронная почта" />
+          <input required type="password" placeholder="Пароль" />
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
-            <img src={Add} alt="add an avatar" />
+            <img src={Add} alt="добавить аватар" />
             <span>Добавить аватар</span>
           </label>
           <button disabled={loading}>Регистрация</button>
