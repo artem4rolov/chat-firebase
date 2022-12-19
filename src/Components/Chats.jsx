@@ -6,6 +6,7 @@ import { ChatContext } from "../context/ChatContext";
 
 export const Chats = () => {
   const [chats, setChats] = useState([]);
+  const [selectedChat, setSelectedChat] = useState(null);
 
   // получаем юзера, который вошел в приложение
   const { currentUser } = useContext(AuthContext);
@@ -29,8 +30,10 @@ export const Chats = () => {
     currentUser.uid && getChats();
   }, [currentUser.uid]);
 
-  const handleSelect = (user) => {
+  const handleSelect = (user, chat) => {
     dispatch({ type: "CHANGE_USER", payload: user });
+    setSelectedChat(chat[0]);
+    // console.log(chat[0]);
   };
 
   return (
@@ -40,9 +43,9 @@ export const Chats = () => {
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((chat) => (
           <div
-            className="userChat"
+            className={`userChat ${chat[0] === selectedChat ? "active" : null}`}
             key={chat[0]}
-            onClick={() => handleSelect(chat[1].userInfo)}
+            onClick={() => handleSelect(chat[1].userInfo, chat)}
           >
             {/* выводим аватар пользователя в списке чатов */}
             <img src={chat[1].userInfo.photoURL} alt="" />

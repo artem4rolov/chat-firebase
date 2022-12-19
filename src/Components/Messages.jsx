@@ -26,8 +26,6 @@ export const Messages = () => {
     // обновляем всегда при нажатии на разные диалоги с пользователями
   }, [data.chatId]);
 
-  console.log(messages);
-
   return (
     <div className="messages">
       {messages?.map((message) => (
