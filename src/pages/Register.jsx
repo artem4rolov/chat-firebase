@@ -29,6 +29,7 @@ export const Register = () => {
       const storageRef = ref(storage, `${displayName + date}`);
 
       await uploadBytesResumable(storageRef, file).then(() => {
+        // загружаем изображение на сервер
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
             //обновляем профиль юзера (аватар, никнейм)

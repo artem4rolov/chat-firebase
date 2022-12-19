@@ -1,48 +1,60 @@
-import React from "react";
+import { onSnapshot, doc } from "firebase/firestore";
+import { db } from "../firebase";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
 export const Chats = () => {
+  const [chats, setChats] = useState([]);
+
+  // получаем юзера, который вошел в приложение
+  const { currentUser } = useContext(AuthContext);
+  // получаем чаты юзера
+  const { dispatch } = useContext(ChatContext);
+
+  useEffect(() => {
+    const getChats = () => {
+      // получаем чаты юзера (метод onSnaphot позволяет отслеживать изменения в чатах в реальном времени)
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+
+      //
+      return () => {
+        unsub();
+      };
+    };
+
+    // получаем список чатов только при условии, что в данный момент юзер вошел в приложение
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
+
+  const handleSelect = (user) => {
+    dispatch({ type: "CHANGE_USER", payload: user });
+  };
+
   return (
     <div className="chats">
-      <div className="userChat">
-        <img
-          src="https://get.pxhere.com/photo/man-person-girl-woman-camera-photography-portrait-spring-red-lens-color-autumn-canon-romance-season-taking-photo-photograph-beauty-emotion-photo-shoot-portrait-photography-1169775.jpg"
-          alt=""
-        />
-        <div className="userChatInfo">
-          <span>User</span>
-          <p>Hello..</p>
-        </div>
-      </div>
-      <div className="userChat">
-        <img
-          src="https://get.pxhere.com/photo/man-person-girl-woman-camera-photography-portrait-spring-red-lens-color-autumn-canon-romance-season-taking-photo-photograph-beauty-emotion-photo-shoot-portrait-photography-1169775.jpg"
-          alt=""
-        />
-        <div className="userChatInfo">
-          <span>User</span>
-          <p>Hello..</p>
-        </div>
-      </div>
-      <div className="userChat">
-        <img
-          src="https://get.pxhere.com/photo/man-person-girl-woman-camera-photography-portrait-spring-red-lens-color-autumn-canon-romance-season-taking-photo-photograph-beauty-emotion-photo-shoot-portrait-photography-1169775.jpg"
-          alt=""
-        />
-        <div className="userChatInfo">
-          <span>User</span>
-          <p>Hello..</p>
-        </div>
-      </div>
-      <div className="userChat">
-        <img
-          src="https://get.pxhere.com/photo/man-person-girl-woman-camera-photography-portrait-spring-red-lens-color-autumn-canon-romance-season-taking-photo-photograph-beauty-emotion-photo-shoot-portrait-photography-1169775.jpg"
-          alt=""
-        />
-        <div className="userChatInfo">
-          <span>User</span>
-          <p>Hello..</p>
-        </div>
-      </div>
+      {/* перебираем все чаты пользователя, даем чатам картинки, никнеймы и последние сообщения */}
+      {Object.entries(chats)
+        // если есть чаты - сортируем их по дате последнего сообщения
+        ?.sort((a, b) => b[1].date - a[1].date)
+        .map((chat) => (
+          <div
+            className="userChat"
+            key={chat[0]}
+            onClick={() => handleSelect(chat[1].userInfo)}
+          >
+            {/* выводим аватар пользователя в списке чатов */}
+            <img src={chat[1].userInfo.photoURL} alt="" />
+            <div className="userChatInfo">
+              {/* выводим никнейм пользователя в списке чатов */}
+              <span>{chat[1].userInfo.displayName}</span>
+              {/* выводим последнее сообщение рядом с фото пользователя в списке чатов */}
+              <p>{chat[1].lastMessage?.text}</p>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
