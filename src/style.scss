@@ -7,6 +7,31 @@
   font-family: Roboto, serif;
 }
 
+// start scroll-bar
+*,
+html * /* override x.xhtml.ru style */ {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(205, 205, 205) rgb(106, 106, 106);
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+  background: rgb(224, 224, 224);
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+  background-color: rgb(45, 85, 66);
+  border-radius: 5px;
+  border: 2px solid rgb(255, 253, 253);
+}
+
+// end of scroll-bar
+
 .formContainer {
   background-color: #b1ece4;
   height: 100vh;
@@ -124,8 +149,10 @@
 
     // Чаты и поиск по чатам (Сайдбар)
     .sidebar {
+      height: 100%;
       flex: 1;
       background-color: #438f8e;
+      overflow: hidden;
 
       .navbar {
         display: flex;
@@ -180,7 +207,11 @@
       }
 
       .chats {
+        // нужно отнять высоту блока с поиском и блока с профилем, чтобы поместиись все чаты
+        height: calc(100% - 115px);
+        width: 100%;
         overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .search {
@@ -192,7 +223,7 @@
           align-items: center;
 
           input {
-            width: 100%;
+            width: calc(100% - 10px);
             background-color: transparent;
             border: none;
             color: white;
@@ -253,9 +284,10 @@
             width: 100%;
           }
           p {
+            width: 100px;
             font-size: 14px;
             color: lightgray;
-            width: 100%;
+
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -481,7 +513,7 @@
         justify-content: space-between;
 
         input {
-          width: 100%;
+          width: calc(100% - 10px);
           border: none;
           outline: none;
           color: #2f2d52;
@@ -509,9 +541,9 @@
               border-radius: 50%;
             }
 
-            &.sendingImg {
-              background-color: #87c198;
-            }
+            // &.sendingImg {
+            //   background-image: url("../src/img/loading.svg");
+            // }
           }
 
           button {
@@ -631,6 +663,7 @@
       overflow: visible;
 
       .sidebar {
+        overflow: hidden;
         .navbar {
           height: 120px;
 
@@ -666,7 +699,7 @@
         }
 
         .chats {
-          overflow-y: auto;
+          height: calc(100% - 195px);
         }
 
         .search {
@@ -754,7 +787,6 @@
           padding: 5px;
           gap: 30px;
           height: calc(100% - 180px);
-          overflow-y: scroll;
 
           .message {
             .messageInfo {
@@ -779,6 +811,7 @@
           padding: 30px;
           input {
             font-size: 24px;
+            width: calc(100% - 100px);
 
             &:focus {
               border-bottom: 1px solid rgba(255, 255, 255, 0.314);
@@ -883,9 +916,6 @@
 
         .input {
           position: relative;
-          input {
-            width: 90%;
-          }
 
           .send {
             position: absolute;

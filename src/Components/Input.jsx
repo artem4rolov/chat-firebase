@@ -15,6 +15,7 @@ import { v4 as uuid } from "uuid";
 
 import SendSvg from "../img/send.svg";
 import Img from "../img/img.svg";
+import LoadingImg from "../img/loading.svg";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export const Input = () => {
@@ -33,11 +34,6 @@ export const Input = () => {
 
   const handleSend = async (e) => {
     if (img) {
-      if (img.size > 1048576) {
-        setText("Слишком большое изображение!");
-        setImg(null);
-        return;
-      }
       // даем класс для тега img, чтобы понять что мы прикрепили картинку в чат
       setSendingImg(true);
       setLoading(true);
@@ -65,6 +61,8 @@ export const Input = () => {
             });
             // обозначаем окончание загрузки
             setLoading(false);
+
+            // setSendingImg(false);
           });
         }
       );
@@ -123,10 +121,10 @@ export const Input = () => {
           style={{ display: "none" }}
           id="file"
           onChange={(e) => setImg(e.target.files[0])}
-          accept="image/*"
+          accept="image/"
         />
         <label htmlFor="file">
-          <img src={Img} alt="" className={sendingImg ? "sendingImg" : null} />
+          <img src={sendingImg ? LoadingImg : Img} alt="" />
         </label>
         <button onClick={handleSend} onKeyDown={handleSend} disabled={loading}>
           <span>{loading ? "Отправляем..." : "Отправить"}</span>
