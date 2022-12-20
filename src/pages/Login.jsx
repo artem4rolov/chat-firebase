@@ -51,7 +51,7 @@ export const Login = () => {
         </form>
         {err && <span>{errMess}</span>}
         <p>
-          Нет аккаунта? <Link to="/register">Заргеистрируйтесь</Link>
+          Нет аккаунта? <Link to="/register">Зарегистрируйтесь</Link>
         </p>
       </div>
     </div>
