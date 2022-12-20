@@ -26,6 +26,9 @@ export const Login = () => {
         case "auth/user-not-found":
           setErrMess("Неверный логин или пароль!");
           break;
+        case "auth/wrong-password":
+          setErrMess("Неверный пароль!");
+          break;
         default:
           setErrMess("Что-то пошло не так");
           break;

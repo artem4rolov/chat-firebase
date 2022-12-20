@@ -119,7 +119,7 @@ export const Input = () => {
           style={{ display: "none" }}
           id="file"
           onChange={(e) => setImg(e.target.files[0])}
-          accept=".png, .jpg, .jpeg"
+          accept="image/*"
         />
         <label htmlFor="file">
           <img src={Img} alt="" className={sendingImg ? "sendingImg" : null} />
