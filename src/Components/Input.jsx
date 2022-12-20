@@ -32,11 +32,12 @@ export const Input = () => {
   };
 
   const handleSend = async (e) => {
-    if (img.size > 1048576) {
-      setText("Слишком большое изображение!");
-      return;
-    }
     if (img) {
+      if (img.size > 1048576) {
+        setText("Слишком большое изображение!");
+        setImg(null);
+        return;
+      }
       // даем класс для тега img, чтобы понять что мы прикрепили картинку в чат
       setSendingImg(true);
       setLoading(true);
