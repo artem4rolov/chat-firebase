@@ -8,12 +8,14 @@ import { useNavigate, Link } from "react-router-dom";
 
 export const Register = () => {
   const [err, setErr] = useState(false);
+  const [errMess, setErrMess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+
     // собираем данные с формы
     const displayName = e.target[0].value;
     const email = e.target[1].value;
@@ -50,13 +52,23 @@ export const Register = () => {
             // если все прошло гуд - идем на главную (<Home />)
             navigate("/");
           } catch (err) {
-            console.log(err);
+            console.log(err.code);
             setErr(true);
             setLoading(false);
           }
         });
       });
     } catch (err) {
+      // проверяем код ошибки
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          setErrMess("Такой пользователь уже зарегистрирован!");
+          break;
+        default:
+          setErrMess("Что-то пошло не так");
+          break;
+      }
+      console.log(err.code);
       setErr(true);
       setLoading(false);
     }
@@ -74,11 +86,13 @@ export const Register = () => {
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <img src={Add} alt="добавить аватар" />
-            <span>Добавить аватар</span>
+            <span>Не забудьте загрузить аватар!</span>
           </label>
-          <button disabled={loading}>Регистрация</button>
+          <button disabled={loading}>
+            {loading ? "Регистрируем..." : "Регистрация"}
+          </button>
           {loading && "Пожалуйста, подождите..."}
-          {err && <span>Что-то пошло не так</span>}
+          {err && <span>{errMess}</span>}
         </form>
         <p>
           У вас есть аккаунт? <Link to="/login">Войти</Link>

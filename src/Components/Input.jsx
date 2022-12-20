@@ -13,7 +13,7 @@ import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 
 import SendSvg from "../img/send.svg";
-import Img from "../img/img.png";
+import Img from "../img/img.svg";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export const Input = () => {

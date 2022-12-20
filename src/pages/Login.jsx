@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom/dist";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
 export const Login = () => {
   const [err, setErr] = useState(false);
+  const [errMess, setErrMess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -20,6 +21,16 @@ export const Login = () => {
       // если все ок - показываем домашнюю страницу (чат)
       navigate("/");
     } catch (err) {
+      // проверяем код ошибки
+      switch (err.code) {
+        case "auth/user-not-found":
+          setErrMess("Неверный логин или пароль!");
+          break;
+        default:
+          setErrMess("Что-то пошло не так");
+          break;
+      }
+      console.log(err);
       setErr(true);
       setLoading(false);
     }
@@ -33,9 +44,9 @@ export const Login = () => {
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="Электронная почта" />
           <input type="password" placeholder="Пароль" />
-          <button>Войти</button>
+          <button disabled={loading}>{loading ? "Вход..." : "Войти"}</button>
         </form>
-        {err && <span>Что-то пошло не так</span>}
+        {err && <span>{errMess}</span>}
         <p>
           Нет аккаунта? <Link to="/register">Заргеистрируйтесь</Link>
         </p>
