@@ -83,7 +83,13 @@ export const Register = () => {
           <input required type="text" placeholder="Ваше имя в чате" />
           <input required type="email" placeholder="Электронная почта" />
           <input required type="password" placeholder="Пароль" />
-          <input required style={{ display: "none" }} type="file" id="file" />
+          <input
+            required
+            style={{ display: "none" }}
+            type="file"
+            id="file"
+            accept="image/*"
+          />
           <label htmlFor="file">
             <img src={Add} alt="добавить аватар" />
             <span>Не забудьте загрузить аватар!</span>

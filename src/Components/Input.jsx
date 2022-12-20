@@ -5,6 +5,7 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
+
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
@@ -31,14 +32,16 @@ export const Input = () => {
   };
 
   const handleSend = async (e) => {
+    if (img.size > 1048576) {
+      setText("Слишком большое изображение!");
+      return;
+    }
     if (img) {
       // даем класс для тега img, чтобы понять что мы прикрепили картинку в чат
       setSendingImg(true);
       setLoading(true);
       // если мы крепим изображение в чат, то загружаем его на сервер (хранилище firebase, как при регистрации)
-
       const storageRef = ref(storage, uuid());
-
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
@@ -71,7 +74,7 @@ export const Input = () => {
         messages: arrayUnion({
           // также обязательно даем уникальный id каждому сообщению
           id: uuid(),
-          text: text ? text : "Изображение",
+          text: text ? text : null,
           senderId: currentUser.uid,
           // переводим серверное время в миллисекунды, чтобы потом перевести время отправки\получения сообщения в человеческий вид
           date: Timestamp.now().toMillis(),
@@ -119,6 +122,7 @@ export const Input = () => {
           style={{ display: "none" }}
           id="file"
           onChange={(e) => setImg(e.target.files[0])}
+          accept="image/*"
         />
         <label htmlFor="file">
           <img src={Img} alt="" className={sendingImg ? "sendingImg" : null} />

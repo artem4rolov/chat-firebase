@@ -106,9 +106,11 @@ export const Search = () => {
           type="text"
           placeholder="Поиск..."
           onChange={(e) => setUserName(e.target.value)}
+          onInput={(e) => setUserName(e.target.value)}
           onKeyDown={handleKey}
           value={userName}
         />
+        {/* <button className="mobileButtonSearch" onClick={() => setUserName()}>Поиск</button> */}
       </div>
       {err && <span>Поиск не дал результатов</span>}
       {user && (
