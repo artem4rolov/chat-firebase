@@ -48,6 +48,10 @@ export const Search = () => {
     e.code === "Enter" && handleSearch();
   };
 
+  const handleButton = () => {
+    handleSearch();
+  };
+
   // клик на юзера в поиске или списке чатов
   const handleSelect = async () => {
     // необходимо проверить является эта группа людей чатом в firestore, если ее нет - создаем ее
@@ -110,7 +114,9 @@ export const Search = () => {
           onKeyDown={handleKey}
           value={userName}
         />
-        {/* <button className="mobileButtonSearch" onClick={() => setUserName()}>Поиск</button> */}
+        <button className="mobileButtonSearch" onClick={handleButton}>
+          Поиск
+        </button>
       </div>
       {err && <span>Поиск не дал результатов</span>}
       {user && (
