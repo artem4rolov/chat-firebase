@@ -65,7 +65,7 @@ export const Register = () => {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">Лайв Чат</span>
+        <span className="logo">ЛайвЧат</span>
         <span className="title">Регистрация</span>
         <form onSubmit={handleSubmit}>
           <input required type="text" placeholder="Ваше имя в чате" />

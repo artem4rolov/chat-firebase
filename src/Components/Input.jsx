@@ -12,7 +12,7 @@ import { db, storage } from "../firebase";
 // генератор уникальных id
 import { v4 as uuid } from "uuid";
 
-import AttachFile from "../img/attach.png";
+import SendSvg from "../img/send.svg";
 import Img from "../img/img.png";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
@@ -125,7 +125,8 @@ export const Input = () => {
           <img src={Img} alt="" className={sendingImg ? "sendingImg" : null} />
         </label>
         <button onClick={handleSend} onKeyDown={handleSend} disabled={loading}>
-          {loading ? "Отправляем..." : "Отправить"}
+          <span>{loading ? "Отправляем..." : "Отправить"}</span>
+          <img src={SendSvg} alt="отправить сообщение" className="sendImg" />
         </button>
       </div>
     </div>

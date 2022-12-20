@@ -28,7 +28,7 @@ export const Login = () => {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">Лайв-чат</span>
+        <span className="logo">ЛайвЧат</span>
         <span className="title">Вход</span>
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="Электронная почта" />

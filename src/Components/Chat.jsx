@@ -5,7 +5,6 @@ import { Input } from "../Components/Input";
 import { ChatContext } from "../context/ChatContext";
 
 import MoreFunctions from "../img/more.png";
-import ArrowSvg from "../img/arrow.svg";
 
 export const Chat = () => {
   // получаем юзера, затем все данные (чаты и тд)
@@ -14,7 +13,6 @@ export const Chat = () => {
   return (
     <div className="chat">
       <div className="chatInfo">
-        <img src={ArrowSvg} alt="стрелочка" className="goToSidebar" />
         <span>
           {data.user.displayName && "Диалог с " + data.user.displayName}
         </span>

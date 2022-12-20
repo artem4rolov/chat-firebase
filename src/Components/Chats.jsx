@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 
-export const Chats = () => {
+export const Chats = ({ hideSidebar }) => {
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
 
@@ -33,6 +33,7 @@ export const Chats = () => {
   const handleSelect = (user, chat) => {
     dispatch({ type: "CHANGE_USER", payload: user });
     setSelectedChat(chat[0]);
+    hideSidebar();
     // console.log(chat[0]);
   };
 
