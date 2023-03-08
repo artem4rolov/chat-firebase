@@ -1,70 +1,43 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div id="header">
+  <h2>Chat Firebase</h2>
+  <br/>
+  <h3>Чат, аналог WhatsApp</h3>
+  <br/>
+  <br/>
+  <strong>Технологии:</strong> React, Redux, FireBase
+  <br/>
+  <br/>
+  <strong>Демо: </strong> https://chat-firebase-phi.vercel.app/
+  <br/>
+  <strong>Репозиторй:</strong> https://github.com/artem4rolov/chat-firebase/
+  <br/>
+  <br/>
+  <h2>Основные возможности проекта:</h2>
+  <br/>
+  <br/>
+  <h3>1. Регистрация и авторизация пользователя</h3>
+  <br/>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/HPCDG2P/1.jpg" alt="1" border="0"></a>
+  <br/>
+  <h3>2. Интерфейс разделен на две части. Слева - сайдбар с поиском и списком чатов пользователя, справа - чат с конкретным пользователем</h3>
+  <br/>
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/HPCDG2P/1.jpg" alt="1" border="0"></a>
+  <br/>
+  <h3>3. Сайдбар - поиск пользователя по никнейму и список чатов пользователя, вывод последнего сообщения из конкретного чата</h3>
+  <br/>
+  <a href="https://ibb.co/fSn8WSK"><img src="https://i.ibb.co/RSBhKSM/3.jpg" alt="3" border="0"></a>
+  <br/>
+  <h3>4. Чат с выводом сообщений от пользователя и собеседника, загрузка изображений</h3>
+  <br/>
+  <a href="https://ibb.co/fSn8WSK"><img src="https://i.ibb.co/RSBhKSM/3.jpg" alt="3" border="0"></a>
+  <br/>
+  <h3>5. Вывод информации о собеседнике рядом с чатом.</h3>
+  <br/>
+  <a href="https://ibb.co/y8hknWv"><img src="https://i.ibb.co/zS82hG9/5.jpg" alt="5" border="0"></a>
+  <br/>
+  <h3>6. Мобильная версия проекта.</h3>
+  <br/>
+  <a href="https://ibb.co/g91zzMb"><img src="https://i.ibb.co/c35DDcK/6.jpg" alt="6" border="0"></a>
+  <a href="https://ibb.co/NVXwnVf"><img src="https://i.ibb.co/YR6vTRJ/7.jpg" alt="7" border="0"></a>
+</div>
