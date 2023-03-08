@@ -22,7 +22,7 @@
   <br/>
   <h3>2. Интерфейс разделен на две части. Слева - сайдбар с поиском и списком чатов пользователя, справа - чат с конкретным пользователем</h3>
   <br/>
-  <a href="https://imgbb.com/"><img src="https://i.ibb.co/HPCDG2P/1.jpg" alt="1" border="0"></a>
+  <a href="https://ibb.co/sWy5Fqz"><img src="https://i.ibb.co/hYDXKVw/2.jpg" alt="2" border="0"></a>
   <br/>
   <h3>3. Сайдбар - поиск пользователя по никнейму и список чатов пользователя, вывод последнего сообщения из конкретного чата</h3>
   <br/>
@@ -30,7 +30,7 @@
   <br/>
   <h3>4. Чат с выводом сообщений от пользователя и собеседника, загрузка изображений</h3>
   <br/>
-  <a href="https://ibb.co/fSn8WSK"><img src="https://i.ibb.co/RSBhKSM/3.jpg" alt="3" border="0"></a>
+  <a href="https://ibb.co/dP3FXWL"><img src="https://i.ibb.co/gSXNQjP/4.jpg" alt="4" border="0"></a>
   <br/>
   <h3>5. Вывод информации о собеседнике рядом с чатом.</h3>
   <br/>
