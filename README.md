@@ -8,6 +8,9 @@
   <strong>Технологии:</strong> React, Redux, FireBase
   <br/>
   <br/>
+  <strong>Изучено: </strong> Создание объекта документа в FireBase (пользователи, чаты с пользователями), работа с socket.io (постоянное обновление данных с сервера), аутентификация и регистрация с помощью функций FireBase
+  <br/>
+  <br/>
   <strong>Демо: </strong> https://chat-firebase-phi.vercel.app/
   <br/>
   <strong>Репозиторй:</strong> https://github.com/artem4rolov/chat-firebase/
